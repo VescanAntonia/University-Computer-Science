@@ -1,0 +1,9 @@
+﻿  App.cpp
+  ExtendedTest.cpp
+D:\Faculty\DSA\Lab4\ExtendedTest.cpp(242,20): warning C4101: 'ex': unreferenced local variable
+D:\Faculty\DSA\Lab4\ExtendedTest.cpp(249,20): warning C4101: 'ex': unreferenced local variable
+  MultiMap.cpp
+  MultiMapIterator.cpp
+  ShortTest.cpp
+  Generating Code...
+  MultiMap-lab4.vcxproj -> D:\Faculty\DSA\Lab4\MultiMap-lab4\x64\Debug\MultiMap-lab4.exe
