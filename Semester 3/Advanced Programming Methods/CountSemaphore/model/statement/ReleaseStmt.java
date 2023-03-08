@@ -1,0 +1,73 @@
+package model.statement;
+
+import javafx.util.Pair;
+import model.ADT.MyIDictionary;
+import model.ADT.MyISemaphoreTable;
+import model.exceptions.MyException;
+import model.expression.IExpression;
+import model.prgstate.PrgState;
+import model.type.IntType;
+import model.type.StringType;
+import model.type.Type;
+import model.value.IntValue;
+import model.value.StringValue;
+import model.value.Value;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class ReleaseStmt implements IStmt{
+    private final String varName;
+    private final Lock lock=new ReentrantLock();
+    public ReleaseStmt(String var){
+        this.varName=var;
+    }
+
+    @Override
+    public MyIDictionary<String, Type> typecheck(MyIDictionary<String,Type>typeEnv)throws MyException {
+        if(typeEnv.lookUp(varName).equals(new IntType()))
+            return typeEnv;
+        else
+            throw new MyException(String.format("%s is not int!", varName));
+    }
+
+    @Override
+    public PrgState execute(PrgState state) throws MyException {
+        lock.lock();
+        MyIDictionary<String, Value> symTable = state.getSymTable();
+        MyISemaphoreTable semaphoreTable = state.getSemaphoreTable();
+        if (symTable.isDefined(varName)) {
+            if (symTable.lookUp(varName).getType().equals(new IntType())) {
+                IntValue fi = (IntValue) symTable.lookUp(varName);
+                int foundIndex = fi.getValue();
+                if (semaphoreTable.getContent().containsKey(foundIndex)) {
+                    Pair<Integer, List<Integer>> foundSemaphore = semaphoreTable.get(foundIndex);
+                    if (foundSemaphore.getValue().contains(state.getId()))
+                        foundSemaphore.getValue().remove((Integer) state.getId());
+                    semaphoreTable.update(foundIndex, new Pair<>(foundSemaphore.getKey(), foundSemaphore.getValue()));
+                } else {
+                    throw new MyException("Index not in the semaphore table!");
+                }
+            } else {
+                throw new MyException("Index must be of int type!");
+            }
+        } else {
+            throw new MyException("Index not in symbol table!");
+        }
+        lock.unlock();
+        return null;
+    }
+
+    @Override
+    public IStmt deepCopy(){
+        return new ReleaseStmt(this.varName);
+    }
+    @Override
+    public String toString(){
+        return String.format("release(%s)", varName);
+    }
+
+}
