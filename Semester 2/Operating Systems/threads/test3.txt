@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+//n*10 thread-uri
+int *v,poz[11];
+typedef struct{
+int index;
+}structura;
+
+int n,k;
+pthread_mutex_t m;
+pthread_barrier_t barr;
+
+
+void *f(void *pth)
+{
+	int i;
+	structura s=*(structura*)pth;
+	pthread_barrier_wait(&barr);
+	for(i=0; i<10; i++)
+	{
+		pthread_mutex_lock(&m);
+		v[k]=s.index;
+		poz[s.index]=k;
+		//if(i==9) printf("Thread %d last append %d.\n",s.index,k);
+		k++;
+		pthread_mutex_unlock(&m);
+	}
+	free(pth);
+	printf("Thread-ul %d a adaugat indexul ultima data pe pozitia %d.\n",s.index,poz[s.index]);	
+	return NULL;	
+}
+
+
+int main(int argc,char* argv[])
+{
+	int i;
+	n=atoi(argv[1]);
+	pthread_t *t=(pthread_t*)malloc(n*sizeof(pthread_t));
+	v=(int*)malloc(n*10*sizeof(int));
+	pthread_mutex_init(&m,NULL);
+	pthread_barrier_init(&barr,NULL,n);
+	for(i=0; i<n; i++)
+	{
+		structura *s=(structura*)malloc(sizeof(structura));
+		s->index=i;
+		pthread_create(&t[i],NULL,f,s);
+	}
+	for(i=0; i<n; i++)
+	pthread_join(t[i],NULL);
+	pthread_mutex_destroy(&m);
+	pthread_barrier_destroy(&barr);
+	free(t);
+	free(v);
+	return 0;
+}

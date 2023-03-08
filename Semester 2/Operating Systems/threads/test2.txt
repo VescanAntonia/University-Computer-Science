@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+int a,b;
+typedef struct{
+int x;
+int y;
+}structura;
+
+pthread_mutex_t m;
+
+void *f(void *f_thread)
+{
+	structura s=*(structura*)f_thread;
+	int i;
+	//pthread_mutex_lock(&m);
+	for(i=0; i<s.y; i++)
+	{
+		pthread_mutex_lock(&m);
+		printf("1) Values are a=%d, b=%d and the other two values are x=%d,y=%d.\n",a,b,s.x,s.y);
+		a=a+b;
+		a=a+s.x;
+		b=s.x;
+		printf("2) Values are a=%d, b=%d and the other two values are x=%d,y=%d.\n",a,b,s.x,s.y);
+		pthread_mutex_unlock(&m);
+	}
+	//pthread_mutex_unlock(&m);
+	free(f_thread);
+	return NULL;
+}
+
+
+int main(int argc,char* argv[])
+{
+	int i;
+	pthread_t *t=malloc(((argc-1)/2)*sizeof(pthread_t));
+	pthread_mutex_init(&m,NULL);
+	for(i=0; i<argc-1; i=i+2)
+	{
+		structura *s=malloc(sizeof(structura));
+		s->x=atoi(argv[i+1]);
+		s->y=atoi(argv[i+2]);
+		pthread_create(&t[i/2],NULL,f,(void*)s);
+	}
+	for(i=0; i<(argc-1)/2; i++)
+	pthread_join(t[i],NULL);
+	pthread_mutex_destroy(&m);
+	free(t);
+	return 0;
+}

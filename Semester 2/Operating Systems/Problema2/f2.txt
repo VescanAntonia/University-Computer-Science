@@ -1,0 +1,109 @@
+
+	
+//Scrieti 2 programe c, A si B. Programul A va citi doua numare intregi
+//de la tastatura si va scrie intr-un fifo cel mai mic multiplu comun al
+//acestora. Programul B va creea 2 procese P1 si P2, P1 va citi multiplul
+//din fifo-ul mentionat anterior si va calcula divizorii acestuia.
+//Divizorii vor fi transmis printr-un pipe procesului P2 care ii va afisa
+//pe ecran.
+//Numele fifo-ului va fi dat ca argument in linia de comanda in ambele
+//programe. Programul A va creea fifo-ul si programul B va sterge fifo-ul.
+//Ambele programe terbuie compilate cu gcc -Wall -g fara erori sau warninguri.
+//Ambele programe trebuie sa ruleze fara memory leaks, erori de context sau
+//procese zombie.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+int main(int argc,char* argv[])
+{
+	int a,b,ok=0,cmmmc;
+	char *myfifo="/tmp/fifo2";
+	mkfifo(myfifo,0666);
+	printf("Introduceti cele 2 numere:");
+	scanf("%d %d",&a,&b);
+	if(a>b) cmmmc=a;
+		else cmmmc=b;
+	while(ok==0)
+	{
+	if(cmmmc%a==0 && cmmmc%b==0)
+		ok=1;
+	else cmmmc++;
+	}
+	printf("%d ",cmmmc);
+	int fd=open(myfifo,O_WRONLY);
+	if(fd==-1)
+	{
+		perror("Eroare la open():");
+		exit(EXIT_FAILURE);
+	}
+	write(fd,&cmmmc,sizeof(int));
+	close(fd);
+	return 0;
+}
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+int main(int argc,char* argv[])
+{
+	int p[2];
+	pipe(p);
+	int pid=fork();
+	if(pid==0)
+	{
+		//procesul 1
+		char* myfifo="/tmp/fifo2";
+		mkfifo(myfifo,0666);
+		int fd=open(myfifo,O_RDONLY);
+		if(fd==-1)
+		{
+			perror("Eroare la open():");
+			exit(EXIT_FAILURE);
+		}
+		int i,nr_div=1,cmmmc=1;
+		read(fd,&cmmmc,sizeof(int));
+		for(i=1; i<=cmmmc/2; i++)
+		if(cmmmc%i==0) nr_div++;
+		write(p[1],&nr_div,sizeof(int));
+		for(i=1; i<=cmmmc/2; i++)
+		if(cmmmc%i==0) write(p[1],&i,sizeof(int));
+		write(p[1],&cmmmc,sizeof(int));
+		close(p[1]);
+		close(fd);
+		exit(0);
+	}
+	wait(0);
+	pid=fork();
+	if(pid==0)
+	{	
+		//procesul 2
+		int i,div,nr;
+		read(p[0],&nr,sizeof(int));
+		for(i=1; i<=nr; i++)
+		{
+			read(p[0],&div,sizeof(int));
+			printf("%d ",div);
+		}
+		close(p[0]);
+		exit(0);
+	}
+	wait(0);
+	close(p[0]);
+	close(p[1]);
+	unlink("/tmp/fifo1");
+	return 0;
+}

@@ -1,0 +1,30 @@
+#1/bin/bash
+if [ -z $1 ]
+then
+    echo "not enough parameters"
+    exit 1
+fi
+
+if ! echo $1|grep -E -q "^[a-z]{4}[1-9]{4}$"
+then
+    echo "first parameter must be a valid username"
+    exit 1
+fi
+
+user=$1
+shift 1
+for dir in $@
+do
+    if [ ! -d $dir ]
+    then
+        echo "parameter is not a directory"
+    else
+        if ls -l $dir|awk {'print $3'} | grep -E -q "${user}"
+        then
+               for file in ` find $dir -type f `
+               do
+                echo $file
+                done
+        fi
+    fi
+done

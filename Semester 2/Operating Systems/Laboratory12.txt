@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>   !!!
+void *thread (void *arg)
+{
+	printf("I don't wanna be here.");   //printf("%d I don't wanna be here!!\n", *(int*)arg);
+	return 0;
+}
+
+int main(int argc,char **argv)
+{
+	int n;
+	n= atoi(argv[1]);
+	pthread_t *t;
+	t=malloc(sizeof(pthread_t)*n);
+	int i;
+	for (i=0;i<n;i++)
+	{
+	pthread_create(&t[i],0,thread,0);      //pthread_create(&t[i],0,thread, (void*)&i);
+	}
+}
+
+
+
+
+$ gcc -Wall -o -g -pthread 1.c (filenameul)
+joinul asteapta 
+createul creeaza
+
+
+
+
+2)
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>   !!!
+
+typedef struct
+{
+	int a;
+int b;
+}pthread_arg; 
+
+typedef struct {
+	int sum;
+	int prod;
+}pthread_ret;
+
+void *thread (void *arg)
+{
+	printf("I don't wanna be here.");   //printf("%d I don't wanna be here!!\n", *(int*)arg);
+	return 0;
+}
+
+int main(int argc,char **argv)
+{
+	int n;
+	n= atoi(argv[1]);
+	pthread_t *t;
+	t=malloc(sizeof(pthread_t)*n);
+	int i;
+	for (i=0;i<n;i++)
+	{
+	pthread_arg *a;
+	a=malloc(sizeof(pthread_arg));
+	pthread_create(&t[i],0,thread,0);      //pthread_create(&t[i],0,thread, (void*)&i);
+	}
+}
+
+
+
+> pthread_mutex_t m; (*cine are pixul scrie la table*)
+>lock, unlock, init, destroy
+>pthread_mutex_lock(&m)
+>pthread_mutex_unlock(&m)
+>semaphore 5 in then go out then 5 again in
+>barrier se deschide cand nr exact de threaduri care trebuie sa fie pentru a se deschide este atins

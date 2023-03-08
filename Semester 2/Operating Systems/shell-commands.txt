@@ -1,0 +1,204 @@
+USE < TO REDIRECT FILES TO COMMANDS
+USE <<< TO REDIRECT STRINGS TO COMMANDS
+WARNING: IF YOU HAVE A FILE NAME IN A STRING USING <<< WILL REDIRECT THE FILE NAME, NOT THE CONTENTS OF THE FILE, USE < INSTEAD.
+
+-------------------------
+
+man		> show manual page for command
+			example: man grep
+		> can show manual page for C functions if section 3 is given as an argument
+			example: man 3 read
+
+-------------------------
+
+chmod	> change permissions for file
+		   u   g   o
+		d rwx rwx rwx
+		  421 421 421
+		^
+dir, can't be changed (automatic when using mkdir)
+	
+		644 > set permissions to rw- r-- r-- (6 = r+w = 4+2; 4=r)
+		+r  > add read permission in all 3 fields
+		+w  > add write permission in all 3 fields
+		+x  > add execute permission in all 3 fields
+		u-x > remove execute permission from the first field
+		u+x > add execute permission to the first field
+		u=rwx,g=rx,o=r > set permissions to rwx r-x r--
+		
+			example: chmod 744 solution.sh
+
+-------------------------
+
+echo	> print something on the screen or to the buffer to pipe to another command
+			example: echo "$variable"
+
+-------------------------
+
+wc
+		-l > counts the number of lines (should be used in general)
+		-w > counts the number of words
+		-m > counts the number of characters (includes the new line characters)
+		
+			example: wc -l <<< "$variable"
+
+-------------------------
+
+grep
+		-E > Extended REGEX, should be used 99% of the time
+		-c > counts the number of lines that match (NOT the number of matches)
+		-o > returns every match on a separate line (can be combined with "wc -l" to obtain the NUMBER OF MATCHES)
+		-v > reverse matching, returns every line that does not match the given pattern (very useful)
+		-i > ignore case (does not matter if match is lower case or upper case)
+		-q > to be used inside IF, doesn't print anything (q for quiet)
+		
+		-P > Perl REGEX, more powerful than extended but hard to use (can use lookahead and lookbehind expressions)
+		
+			example: grep -E "^${user}" < /etc/passwd
+
+-------------------------
+
+sed
+		-E > Extended REGEX, should be used 99% of the time
+		-e > combine multiple expressions, for example sed -E -e 's/^.//' -e 's/.$//' to remove the first and last character once
+		in a given string or file. You could have made 2 separate sed commands but -e combines both expressions into a single one
+				> the g flag can be used to replace globally instead of only once (place at the end, example 's/.$//g')
+		
+		-i > in place, modify the given file and write the changes to it instead of printing them
+		
+			example: sed -E 's/.$//' < "$file"
+
+-------------------------
+
+awk
+		-f > run code from an .awk file instead of providing it as a parameter
+		-F > the field separator, can be set to anything. Default: space, example: -F ':' for /etc/passwd
+		-v > provide a dynamic variable for the awk script, example: -v n="$number", then reference it without $ in awk, example: if(n<5){}
+		
+		'BEGIN{}{}END{}'
+			> code in BEGIN is ran once BEFORE the code in the second set of curly brackets is ran
+				this is a good place to initialise variables like an average or a sum
+			> code in the second set of curly brackets is ran for every line in the given input (you can access the fields and loop through them <= NF)
+			> code in END is ran once AFTER the code in the second set of curly brackets is ran
+				this is a good place to do final calculations and print your variables
+				
+			example: awk '{print $1}' <<< "$variable"
+
+-------------------------
+
+tr
+		-s > truncate repeating characters
+			example: tr -s ' ' <<< "hello       world" results in "hello world"
+		
+		can be used without s to translate characters
+			example: tr ' ' ',' <<< "hello,,,,,,,world"
+			very useful to turn spaces into new lines
+
+-------------------------
+
+read
+		-r > to be used in while while reading lines, -r means do not escape backslash characters and treat them part of the string
+		-p > print a prompt and do not add a new line after it, useful when reading data from the user
+		
+			example: while read -r line
+			example: read -p "Would you like to do this? " result
+
+-------------------------
+
+head
+		-n > print the first n lines
+			example: head -n 2 <<< "$variable"
+				prints the first 2 lines
+
+			can be used with negative values to ignore the last n lines
+			example: head -n -2 <<< "$variable"
+				prints all lines except the last 2 lines
+
+-------------------------
+
+tail
+		-n > print the last n lines
+			example: tail -n 2 <<< "$variable"
+				prints the last 2 lines
+
+			can be used with plus to start printing at a given line number
+			example: tail -n +2 <<< "$variable"
+				prints all the lines starting at line number 2 (skips first line)
+
+-------------------------
+
+head + tail
+		> can be combined to extract the nth line
+			example: tail -n +"$n" <<< "$variable" | head -n 1
+
+-------------------------
+
+find > finds files or directories in a given directory based on given criteria
+		-name > finds all files  that match a given pattern, example "*.c" to find all C source files
+		-type
+				f > file
+				d > directory
+				l > symlink (shortcut)
+		-perm > finds based on permissions (example 755)
+		
+			example: find -type f -name "*c" <<< "$dirName"
+
+-------------------------
+
+sort
+		-u > unique values only (can be used instead of uniq but don't risk it if you don't know what you are doing)
+		-n > sort numerically (important when you have numbers > 9)
+		-r > sort in reverse order (when you want to have the larger numbers printed first)
+		-k > which key to use for sorting (example, when sorting the result of uniq you should use -k 1,1 to only sort by the first column)
+		-o > output to file, should be used when you are sorting a file in-place
+			example: sort $file -o $file
+			
+			example: sort -n -r -k 1,1 <<< "$variable"
+
+-------------------------
+
+uniq	> only shows unique values from a given input
+			WARNING: this only happens for consecutive values, that's why it's
+			important to sort beforehand
+		-c > display the count next to the unique value
+		
+			example: uniq -c <<< "$variable"
+
+-------------------------
+
+kill
+		-9 > send a SIGKILL to a given PID (signal can't be ignored) to terminate a process
+			You can find the PID using the PS command
+			
+			example: kill -9 123
+
+-------------------------
+
+ps		> shows running processes on the system
+
+-------------------------
+
+df		> shows all mounted filesystems, their size, used and available bytes, use percentage, and their mountpoint
+
+-------------------------
+
+du
+		-b > show size in bytes (should be used every time)
+		-s > summary, to be used when running du on a dir and you only want the total instead of individual dir and file sizes
+		
+		-bs > can be run on a dir or a file to find it's size (includes all subdirectories and files)
+		
+			example: du -bs "$dir"
+
+-------------------------
+
+who			> command to check all users CURRENTLY connected to the system
+
+-------------------------		
+
+last		> command to check PAST connections of users to the system
+
+-------------------------
+
+/etc/passwd > file to check if a user exists and find their home directory
+/etc/group	> file to check what groups exist on the system and their members
