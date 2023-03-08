@@ -1,0 +1,1 @@
+[{"rental_id": 1, "movie_id": 7, "client_id": 5, "rented_date": ["2021", "8", "3"], "due_date": ["2021", "9", "1"], "returned_date": "None"}, {"rental_id": 2, "movie_id": 19, "client_id": 2, "rented_date": ["2021", "5", "6"], "due_date": ["2021", "7", "9"], "returned_date": ["2021", "7", "8"]}]
