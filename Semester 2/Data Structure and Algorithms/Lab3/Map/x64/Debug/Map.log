@@ -1,8 +1,0 @@
-﻿  App.cpp
-  ExtendedTest.cpp
-  Map.cpp
-D:\Faculty\DSA\Lab3\Map.cpp(104,33): warning C4553: '==': result of expression not used; did you intend '='?
-  MapIterator.cpp
-  ShortTest.cpp
-  Generating Code...
-  Map.vcxproj -> D:\Faculty\DSA\Lab3\Map\x64\Debug\Map.exe
