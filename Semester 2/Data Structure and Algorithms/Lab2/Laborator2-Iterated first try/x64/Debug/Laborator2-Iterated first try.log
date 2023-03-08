@@ -1,0 +1,8 @@
+﻿  App.cpp
+  ExtendedTest.cpp
+D:\Faculty\DSA\Lab2\testtest\ExtendedTest.cpp(253,20): warning C4101: 'ex': unreferenced local variable
+  IteratedList.cpp
+  ListIterator.cpp
+  ShortTest.cpp
+  Generating Code...
+  Laborator2-Iterated first try.vcxproj -> D:\Faculty\DSA\Lab2\Laborator2-Iterated first try\x64\Debug\Laborator2-Iterated first try.exe
