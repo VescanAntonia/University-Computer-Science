@@ -1,0 +1,10 @@
+Labrador,Leila,2,https://static.impact.ro/unsafe/970x546/smart/filters:contrast(5):format(webp):quality(90)/https://www.impact.ro/wp-content/uploads/2020/05/C%C3%A2t-cost%C4%83-de-fapt-un-labrador-cu-pedigree-%C3%AEn-Rom%C3%A2nia-1024x675.jpg
+German Shepherd,Bruno,12,http://www.zooland.ro/data/articles/39/652/2005421143847lup-0n.jpg
+Akita Inu,Thor,5,https://s3.publi24.ro/vertical-ro-f646bd5a/extralarge/20190815/1351/fadb271780baa1710c1b2b7708635aa3.jpg
+Husky,Max,4,https://extrucan.ro/wp-content/uploads/2021/08/Siberian-Husky.jpg
+Golder Retriever,Bailey,7,https://www.animalepierdute.ro/wp-content/uploads/2019/08/golden-retriver-caine-de-rasa.jpg
+Chow Chow,Lana,4,https://www.perfectdogbreeds.com/wp-content/uploads/2020/04/Chow-Chow-What-to-Know-Before-Buying-Cover.jpg
+Beagle,Milo,3,https://www.zooplus.ro/ghid/wp-content/uploads/2021/07/caine-beagle-768x512.jpeg
+Bulldog,Buddy,7,https://cdn.britannica.com/05/30105-004-644BE36D.jpg
+Shiba Inu,Bentley,8,https://pisicutesicaini.ro/wp-content/uploads/2021/06/Shiba-Inu-standing-in-profile-outdoors.jpg
+Rottweiler,Ollie,9,https://www.animaland.ro/wp-content/uploads/2022/03/rott1-1200x900.jpg
