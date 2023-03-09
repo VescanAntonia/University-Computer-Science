@@ -1,0 +1,11 @@
+; replace atoms from level k with 0
+
+(defun replaceAtoms(l level k)
+    (cond
+        ((null l) nil)
+        ((atom l) (list l))
+        ((and (atom l) (= level k)) (list 0))
+        (T(list (mapcan #'(lambda (a) (replaceAtoms a (+ level 1) k)) l)))
+        )
+    )
+(print(replaceAtoms '(a(1(2 b)) (c(d))) 0 2))

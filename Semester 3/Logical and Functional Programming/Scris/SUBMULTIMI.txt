@@ -1,0 +1,35 @@
+% B. Dându-se o listă formată din numere întregi, să se genereze ȋn PROLOG lista submulţimilor
+%    cu cel puţin N elemente având suma divizibilă cu 3. 
+%    Se vor scrie modelele matematice și modelele de flux pentru predicatele folosite.
+
+findSum([],0).
+findSum([H|T],R):-
+    findSum(T,R1),
+    R is R1+H.
+
+checkSum(L):-
+    findSum(L,S),
+    S mod 3=:=0.
+
+lungime([],0).
+lungime([_|T],R):-
+    lungime(T,R1),
+    R is R1+1.
+
+checkL(L,N):-
+    lungime(L,R),
+    R>=N.
+
+subset([],[]).
+subset([H|T],[H|R]):-
+    subset(T,R).
+subset([_|T],R):-
+    subset(T,R).
+
+oneSol(L,N,R):-
+    subset(L,R),
+    checkSum(R),
+    checkL(R,N).
+
+allSol(L,N,R):-
+    findall(AUX,oneSol(L,N,AUX),R).

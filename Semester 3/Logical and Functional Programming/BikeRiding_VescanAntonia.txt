@@ -1,0 +1,100 @@
+% Bike Riding Zebra Puzzle
+% Five friends are side by side riding their bikes around town. Each friend is going to eat a sandwich and drink a type of juice. 
+% Use logic to find out more information about the boys.
+
+%1.In the middle is the boy that likes Baseball.
+%2.The cyclist who is going to eat Tuna sandwich is at one of the ends.
+%3.The owner of the White bike is somewhere between the 15-year-old boy and the youngest boy, in that order.
+%4.The boy that is going to drink Pineapple juice is at the fourth position.
+%5.Henry is exactly to the left of the Soccer fan.
+%6.The boy who is going to drink Grapefruit juice is somewhere between who brought Tuna sandwich and who brought Pineapple juice, in that order.
+%7.The boy riding the Black bike is at the third position.
+%8.The one who likes Swimming is next to the friend who likes Baseball.
+%9.The cyclist that brought Pineapple juice is somewhere between the 14-year-old and the boy that brought Orange juice, in that order.
+%10.At one of the ends is the boy riding the Green bicycle.
+%11.The boy who likes the sport played on ice is going to eat Pepperoni sandwich.
+%12.The boy riding the White bike is somewhere between the boys riding the blue and the black bicycles, in that order.
+%13.Joel is next to the 16-year-old cyclist.
+%14.Adrian is exactly to the left of the boy who is going to eat Pepperoni sandwich.
+%15.The 12-year-old is somewhere between the 14-year-old and the oldest boy, in that order.
+%16.The boy who is going to eat Bacon sandwich is somewhere to the right of the owner of the White bicycle.
+%17.The 16-year-old brought cheese sandwich.
+%18.In the fifth position is the 13-year-old boy.
+%19.The cyclist riding the White bike is somewhere between Richard and the boy riding the Red bike, in that order.
+%20.The Baseball fan is next to the boy who is going to drink Apple juice.
+%21.The boy who likes Hockey is at the fifth position.
+%22.Charles is somewhere between Richard and Adrian, in that order.
+
+:- use_rendering(table,
+		 [header(boy('Bike','Name','Sandwich','Juice','Age','Sport' ))]).
+
+nextToLeft(A,B,Ls):-  
+    append(_,[A,B|_],Ls).
+
+nextTo(A,B,Ls):-   
+    append(_,[B,A|_],Ls).
+nextTo(A,B,Ls):-
+    append(_,[A,B|_],Ls).
+
+atAnyEnd(A, Ls):- Ls=[A|_].
+atAnyEnd(A, Ls):- Ls=[_,_,_,_,A].
+
+atAnEnd(A,Ls):-    
+    Ls=[A|_].
+atAnEnd(A,Ls):-
+    Ls=[_,_,_,_,A].
+
+
+somewhereRight(B,A, Ls):- append(_, [A, B|_], Ls).
+somewhereRight(B,A, Ls):- append(_, [A,_, B|_], Ls).
+somewhereRight(B,A, Ls):- append(_, [A,_,_, B|_], Ls).
+somewhereRight(B,A, Ls):- append(_, [A,_,_,_, B|_], Ls).
+
+
+somewhereLeft(A,B, Ls):- append(_, [A, B|_], Ls).
+somewhereLeft(A,B, Ls):- append(_, [A,_, B|_], Ls).
+somewhereLeft(A,B, Ls):- append(_, [A,_,_, B|_], Ls).
+somewhereLeft(A,B, Ls):- append(_, [A,_,_,_, B|_], Ls).
+
+somewhereBetween(A,B,C,Ls):-  
+    somewhereLeft(A,B,Ls),
+    somewhereLeft(B,C,Ls).
+
+boys(Boys):-
+    % each boy in the group is represented as:
+	%      boy('Bike','Name','Sandwich','Juice','Age','Sport')
+    length(Boys,5),
+    Boys=[_,_,boy(_,_,_,_,_,'Baseball'),_,_], %1
+    atAnEnd(boy(_,_,'Tuna',_,_,_),Boys), %2
+    Youngest=boy(_,_,_,_,12,_),
+    somewhereBetween(boy(_,_,_,_,15,_),boy('White',_,_,_,_,_),Youngest,Boys), %3
+    Boys=[_,_,_,boy(_,_,_,'Pineapple',_,_),_], % 4
+    nextToLeft(boy(_,'Henry',_,_,_,_),boy(_,_,_,_,_,'Soccer'),Boys), %5
+    somewhereBetween(boy(_,_,'Tuna',_,_,_),boy(_,_,_,'Grapefruit',_,_),boy(_,_,_,'Pineapple',_,_),Boys), %6
+    Boys=[_,_,boy('Black',_,_,_,_,_),_,_], %7
+    nextTo(boy(_,_,_,_,_,'Swimming'),boy(_,_,_,_,_,'Baseball'),Boys),%8
+    somewhereBetween(boy(_,_,_,_,14,_),boy(_,_,_,'Pineapple',_,_),boy(_,_,_,'Orange',_,_),Boys), %9
+    atAnEnd(boy('Green',_,_,_,_,_),Boys),   %10
+    nextTo(boy(_,'Joel',_,_,_,_),boy(_,_,'Cheese',_,16,_),Boys), %13 & 17
+    Boys=[_,_,_,_,boy(_,_,_,_,13,_)],   %18
+    nextTo(boy(_,_,_,_,_,'Baseball'),boy(_,_,_,'Apples',_,_),Boys),    %20
+    Boys=[_,_,_,_,boy(_,_,'Pepperoni',_,_,'Hockey')],   %11 & 21
+    somewhereBetween(boy('Blue',_,_,_,_,_),boy('White',_,_,_,_,_),boy('Black',_,_,_,_,_),Boys),   %12
+    Oldest=boy(_,_,_,_,16,_),
+    somewhereBetween(boy(_,_,_,_,14,_),boy(_,_,_,_,12,_),Oldest,Boys),    %15
+    somewhereBetween(boy(_,'Richard',_,_,_,_),boy('White',_,_,_,_,_),boy('Red',_,_,_,_,_),Boys),   %19
+    nextToLeft(boy(_,'Adrian',_,_,_,_),boy(_,_,'Pepperoni',_,_,_),Boys),   %14
+    somewhereLeft(boy('White',_,_,_,_,_),boy(_,_,'Bacon',_,_,_),Boys),    % 16
+    somewhereBetween(boy(_,'Richard',_,_,_,_),boy(_,'Charles',_,_,_,_),boy(_,'Adrian',_,_,_,_),Boys), %22
+    member(boy(_,_,'Chicken',_,_,_),Boys),
+    member(boy(_,_,_,'Cranberry',_,_),Boys),
+    member(boy(_,_,_,_,_,'Basketball'),Boys).
+    
+% Example:
+% boys(B).
+% B = [boy(Blue,Richard,Tuna,Cranberry,15,Basketball),
+%	   boy(White,Charles,Chicken,Apple,14,Swimming),
+%      boy(Black,Henry,Bacon,Grapefruit,12,Baseball),
+%	   boy(Red,Adrian,Cheese,Pineapple,16,Soccer),
+%	   boy(Green,Joel,Pepperoni,Orange,13,Hockey)]
+    

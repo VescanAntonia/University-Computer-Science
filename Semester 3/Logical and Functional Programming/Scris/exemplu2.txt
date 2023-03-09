@@ -1,0 +1,22 @@
+ex 1.1 lambda
+ex 1.2 inversam brnchurile sau facem functie auxiliara
+ex 1.3 FUNCALL applies function given on all
+
+insert(E,L,[E|L]).
+insert(E,[H,T],[H|R]):-
+    insert(E,T,R).
+
+validDif([_]).
+validDif([H1,H2|T]):-
+    R is abs(H1-H2),
+    R=<3,
+    validDif([H2|T]).
+
+perm([],[]).
+perm([H|T],P):-
+    perm(T,R),
+    insert(H,R,P).
+onesol(L,R):-
+    perm(L,P1),
+    validDif(P1),
+    R=P1.

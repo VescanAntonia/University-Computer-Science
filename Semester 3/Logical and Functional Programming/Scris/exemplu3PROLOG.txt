@@ -1,0 +1,31 @@
+%for a list of integers generate the list of all subsets with at least N elements, each subset having sum of elements divisible with 3
+%ex: L =[2,3,4] and N=1 [[3],[2,4],[2,3,4]]
+
+checkLength([],0).
+checkLength([_|T],S):-
+    checkLength(T,S1),
+    S is S1+1.
+
+checkSum([],0).
+checkSum([H|T],S):-
+    checkSum(T,S1),
+    S is S1+H.
+
+generateSubsetsSol(_,R,R).
+generateSubsetsSol(H,R,[H|R]).
+
+generateSubsets([],[]).
+generateSubsets([H|T],S):-
+    generateSubsets(T,R),
+    generateSubsetsSol(H,R,S).
+
+oneSol(L,N,R):-
+    generateSubsets(L,R),
+    checkLength(R,Len),
+    Len>=N,
+    checkSum(R,S),
+    S mod 3=:=0.
+
+generateMain(L,N,R):-
+    findall(SOL,oneSol(L,N,SOL),R).
+

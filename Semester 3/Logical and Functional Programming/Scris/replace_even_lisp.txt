@@ -1,0 +1,14 @@
+; C. Se dă o listă neliniară și se cere înlocuirea valorilor numerice pare cu numărul natural succesor.
+;    Se va folosi o funcție MAP.
+
+; Exemplu pentru lista (1 s 4 (2 f (7))) va rezulta (1 s 5 (3 f (7))).
+
+(defun replaceNr(l)
+    (cond
+        ((and(numberp l) (=(mod l 2)0))  (+ l 1))
+        ((atom l)l)
+        (T(mapcar #' replaceNr l))
+        )
+    )
+
+(print (replaceNr '(1 s 4 (2 f (7))) ))

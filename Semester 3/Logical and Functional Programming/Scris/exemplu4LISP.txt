@@ -1,0 +1,11 @@
+;replace all even numbers with the next numeric value 
+
+(defun replaceNrs(l)
+    (cond
+        ((and(numberp l) (= (mod l 2) 0) ) (list (+ l 1)))
+        ((atom l) (list l))
+        (T(list (mapcan #' replaceNrs l)))
+        )
+    )
+
+(print (replaceNrs '(1 s 4 (2 f (7)))))

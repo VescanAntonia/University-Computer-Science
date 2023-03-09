@@ -1,0 +1,17 @@
+(defun getSum(l)
+    (cond
+        ((null l)0)
+        ((listp (car l)) (+ (getSum (car l)) (getSum(cdr l))))
+        (T(+(car l) (getSum(cdr l))))
+        )
+    )
+
+(defun getNodes(l lvl k)
+    (cond
+        ((and(atom l) (= lvl k)) 1)
+        ((atom l)0)
+        (T (apply #' getSum (list (mapcar #'( lambda(a) (getNodes a (+ 1 lvl) k)) l))) )
+        )
+    )
+
+(print(getNodes '(a (b (g)) (c (d (e)) (f)))  0 2))

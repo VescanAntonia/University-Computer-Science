@@ -1,0 +1,28 @@
+% generate the list of arrangements of k elems having product of elems is less than V
+
+checkProduct([H],H).
+checkProduct([H|T],R):-
+    checkProduct(T,R1),
+    R is R1*H.
+
+insertOnEveryPos([],E,[E]):-!.
+insertOnEveryPos(L,E,[E|L]).
+insertOnEveryPos([H|T],E,[H|R]):-
+    insertOnEveryPos(T,E,R).
+
+arrangements([H|_],1,[H]).
+arrangements([_|T],K,R):-
+    arrangements(T,K,R).
+arrangements([H|T],K,RR):-
+    K>1,
+    K1 is K-1,
+    arrangements(T,K1,R),
+    insertOnEveryPos(R,H,RR).
+
+oneSol(L,K,V,R):-
+    arrangements(L,K,R),
+    checkProduct(R,P),
+    P=<V.
+
+allSol(L,K,V,RL):-
+    findall(R,oneSol(L,K,V,R),RL).

@@ -1,0 +1,40 @@
+
+createList(N,I,[]):-
+    I=:=N+1.
+createList(N,I,[I|R]):-
+    I1 is I+1,
+    createList(N,I1,R).
+
+insert(E,L,[E|L]).
+insert(E,[H|T],[H|R]):-
+    insert(E,T,R).
+
+perm([],[]).
+perm([H|T],R):-
+    perm(T,R1),
+    insert(H,R1,R).
+
+absDiff(A,B,R):-
+    A>B,
+    !,
+    R is A-B.
+absDiff(A,B,R):-
+    R is B-A.
+
+checkAbs([H1,H2]):-
+    absDiff(H1,H2,R),
+    R>=2.
+checkAbs([H1,H2|T]):-
+    absDiff(H1,H2,R),
+    R>=2,
+    !,
+    checkAbs([H2|T]).
+
+
+one_sol(L,R):-
+    perm(L,R),
+    checkAbs(R).
+
+all_sols(N,R):-
+    createList(N,1,L),
+    findall(AUX,one_sol(L,AUX),R).

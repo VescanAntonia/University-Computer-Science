@@ -1,0 +1,11 @@
+;remove occ given el
+
+(defun removeOcc(l el)
+    (cond
+        ((and (atom l) (equal l el)) nil)
+        ((atom l) (list l))
+        (T (list(mapcan #'(lambda(a) (removeOcc a el))l)))
+        )
+    )
+
+(print (removeOcc '(1 (2 "A" (3 "A")) ("A")) "A"))

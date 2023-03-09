@@ -1,0 +1,9 @@
+(defun replace(l e new)
+    (cond
+        ((and(atom l) (EQUAL l e)) new)
+        ((atom l) l)
+        (T( mapcar #'(lambda(a) (replace a e new))l))
+        )
+    )
+
+(print(replace '(1 (2 "A" (3 "A")) ("A")) "A" "B" ))
