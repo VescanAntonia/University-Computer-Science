@@ -1,9 +1,0 @@
-; 4.sum of vector
-(defun vectorSum (vect1 vect2)
-    (cond
-         ((null vect1) nil)
-         (T(cons (+ (car vect1)(car vect2)) (vectorSum (cdr vect1) (cdr vect2))))
-    )
-)
-
-(print(vectorSum '(1 2 3) '(1 2 3)))

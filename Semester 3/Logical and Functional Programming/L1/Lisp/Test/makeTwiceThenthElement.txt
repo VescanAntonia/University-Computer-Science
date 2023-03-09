@@ -1,9 +1,0 @@
-(defun makeTwice(arr n current)
-        (cond
-            ((null arr)nil)
-            ( (= n current) (cons (car arr) (cons(car arr) (makeTwice (cdr arr) n (+ 1 current)))))
-            (T(cons (car arr) (makeTwice (cdr arr) n (+ 1 current))))
-            )
-)
-
-(print(makeTwice '(10 20 30 40 50) 3 1))

@@ -1,9 +1,0 @@
-(d(defun vector_sum (a b)
-    (if (null a)
-        nil
-        (cons (+ (car a) (car b)) (vector_sum (cdr a) (cdr b)))
-    )
-)
-
-(print (vector_sum '(1 2 3) '(4 5 6)))
-; => (5 7 9)
