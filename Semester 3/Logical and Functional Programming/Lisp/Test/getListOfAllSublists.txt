@@ -1,0 +1,9 @@
+
+(defun all_sublists (l)
+    (cond
+        ((atom l) nil)
+        (T (apply 'append (list l) (mapcar 'all_sublists l)))
+    )
+)
+
+(print (all_sublists '(1 2 (3 (4 5) (6 7)) 8 (9 10))))

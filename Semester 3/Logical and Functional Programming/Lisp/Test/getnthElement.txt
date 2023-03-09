@@ -1,0 +1,13 @@
+;Mathematical model 
+; getEl(l1...ln, n, curr) = nil if the list is empty
+                           ;l1 if curr=n
+                           ;getEl(l2..ln,n,curr+1) otherwise    
+(defun getEl(arr n curr)
+    (cond
+        ((null arr) nil)
+        ((= n curr) (car arr))
+        (T(getEl (cdr arr) n (+ curr 1)))
+    )
+)
+
+(print (getEl '(1 2 3 4 5) 4 1))

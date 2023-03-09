@@ -1,0 +1,15 @@
+(defun evenNr(nr)
+    (cond
+        (T(and (= (mod nr 2) 0) (not(= nr 0))))
+     )
+)
+
+(defun insertEl(arr pos elem)
+    (cond
+        ((null arr)nil)
+        ((evenNr pos) (cons(car arr) (cons elem (insertEl (cdr arr) (+ pos 1) elem))))
+        (T(cons(car arr) (insertEl(cdr arr) (+ pos 1) elem)))
+        )
+)
+
+(print (insertEl '(1 2 5 4 7) 1 78))

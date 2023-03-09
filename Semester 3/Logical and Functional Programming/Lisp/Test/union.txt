@@ -1,0 +1,20 @@
+; union of two sets
+
+(defun removeEl(arr el)
+     (cond
+         ((null arr)nil)
+         ((not(= (car arr) el)) (cons (car arr) (removeEl (cdr arr) el)) )
+         (T (removeEl(cdr arr)el))
+     )
+)
+
+(defun unionSet(arr1 arr2)
+    (cond
+        ((and (null arr1) (null arr2)) nil)
+        ((null arr1) arr2)
+        ((null arr2) arr1)
+        (T(cons (car arr1) (unionSet (cdr arr1) (removeEl arr2 (car arr1)))))
+    )
+)
+
+(print(unionSet '(1 2 3 4) '(5 3 8)))
