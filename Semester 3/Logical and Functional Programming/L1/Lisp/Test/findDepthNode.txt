@@ -1,0 +1,27 @@
+; L - is the list of nodes, elem is the element we are looking for and counter is the auxiliare variable in which we keep the depth
+; flow model (i,i,i)
+; (cadr l) - the second element of the list, the left subtree
+; (caddr l) - the third element of the list, the right subtree
+
+
+; findLevel(l1l2l3, elem, counter) = 
+; = 0, if l1l2l3 is empty
+; = counter, if elem = l1
+; = findLevel(l2) + findLevel(l3), otherwise
+
+(defun findDepth(l elem counter)
+  (cond
+    ((null l) 0)
+    ((equal elem (car l)) counter)
+    (t (+ (findDepth (cadr l) elem (+ 1 counter)) (findDepth (caddr l) elem (+ 1 counter))))
+  )
+)
+
+;we call the function findDepth in order to obtain the depth of the node
+;main(L,elem)=findDepth(L,elem,0)
+(defun main(l elem)
+    (findDepth l elem 0)
+    )
+
+;(print (findDepth '("A"("B")("C")) "C" 0))
+(print(main '("A"("B")("C"("D")("E"))) "E"))

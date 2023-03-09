@@ -1,0 +1,35 @@
+; c. return the list of the first elements of all list elements of a given list with an odd number of elements at superficial level
+; example: 
+; (1 2 (3 (4 5) (6 7)) 8 (9 10 11)) => (1 3 9)
+
+; getLength(L- list)
+; getLength(l1...ln) = 0 if the list is null
+                    ;  1 + getLength(l2...ln) otherwise
+
+(defun getLength(arr)
+    (if(null arr) 0
+       (+ 1 (getLength(cdr arr)))
+    )
+)
+
+; isItOddLength(L - list)
+; isItOddLength(l1...ln) = T if getLength(l1...ln) mod 2 = 1
+                         ; F otherwise
+(defun isItOddLength(arr)
+    (= (mod (getLength arr) 2) 1)
+)
+
+; getFirstElems(L - list)
+; getFirstLength(l1...ln) = nil if arr is not an atom
+                        ;   l1 U getFirstElems(l2...ln) if the list length is an odd number
+                        ;   getFirstElems(l2...ln)
+(defun getFirstElems(arr)
+    (cond
+        ((atom arr) nil)
+        ((isItOddLength arr) (cons (car arr) (apply 'append(mapcar 'getFirstElems(cdr arr)))))
+        (T (apply 'append(mapcar 'getFirstElems(cdr arr))))
+    )
+)
+
+
+(print (getFirstElems '(1 2 (3 (4 5) (6 7)) 8 (9 10 11))))

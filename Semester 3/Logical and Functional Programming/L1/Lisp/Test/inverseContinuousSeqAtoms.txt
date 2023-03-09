@@ -1,0 +1,23 @@
+(defun my_append(arr k)
+    (cond
+        ((null arr) k)
+        (T(cons(car arr)(my_append(cdr arr) k)))
+    )
+)
+
+(defun my_reverse(arr)
+    (cond
+        ((null arr) nil)
+        (T(my_append(my_reverse(cdr arr)) (list(car arr))))
+    )
+)
+
+(defun inv_list (l aux)
+    (cond
+        ((null l) (my_reverse aux))
+        ((listp (car l)) (my_append (my_reverse aux) (cons (inv_list (car l) nil) (inv_list (cdr l) nil))))
+        (T (inv_list (cdr l) (my_append aux (list (car l)))))
+    )
+)
+(print(my_reverse '(1 2 3)))
+(print(inv_list '(a b c (d (e f) g h i)) nil))

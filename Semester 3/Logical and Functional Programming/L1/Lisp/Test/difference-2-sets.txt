@@ -1,0 +1,28 @@
+; 8 
+; a. return the difference of two sets
+
+; contains(L -list, elem - integer) - checks if the elem is in the given list
+;contains(l1...ln, elem) = nil if the list is null
+                        ; T if l1=elem
+                        ; contains(l2...ln,elem) otherwise 
+(defun contains(arr element)
+    (cond
+        ((null arr)nil)
+        ((=(car arr)element)T)
+        (T(contains(cdr arr)element))
+     )
+)
+
+; setDifference(L - list, M - list)
+; setDifference(l1...ln, m1...mn) = nil if the array is null
+                                ;   l1 U setDifference(l2...ln, m1...mn) if contains(m1...mn, l1) is false
+                                ;   setDifference(l2...ln, m1...mn) otherwise
+(defun setDifference(arr1 arr2)
+    (cond
+        ((null arr1)nil)
+        ((not (contains arr2(car arr1))) (cons(car arr1)(setDifference(cdr arr1)arr2)))
+        (T(setDifference(cdr arr1) arr2))
+    )
+)
+
+(print(setDifference '(1 2 3 4) '(2 3 4 5)))

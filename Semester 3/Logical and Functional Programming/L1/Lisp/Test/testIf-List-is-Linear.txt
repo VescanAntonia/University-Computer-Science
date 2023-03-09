@@ -1,0 +1,11 @@
+;6 a
+(defun isLinear(arr)
+    (cond
+        ((null arr)T)
+        ((listp(car arr)) nil)
+        (T(isLinear (cdr arr)))
+    )
+    
+)
+
+(print(isLinear '(1 2 5 (1 2))))

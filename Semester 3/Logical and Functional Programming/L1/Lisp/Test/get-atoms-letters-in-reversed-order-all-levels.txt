@@ -1,0 +1,16 @@
+(defun my_append (l k)
+    (cond
+        ((null l) k)
+        (T(cons (car l) (my_append (cdr l) k)))
+    )
+)
+
+(defun all_atoms (l)
+    (cond
+        ((null l) nil)
+        ((listp (car l)) (my_append (all_atoms (cdr l)) (all_atoms (car l))))
+        ((not(numberp (car l))) (my_append (all_atoms (cdr l)) (list (car l))))
+        (T(all_atoms(cdr l)))
+    )
+)
+(print (all_atoms '(((A 1 B) C 7) (D E))))

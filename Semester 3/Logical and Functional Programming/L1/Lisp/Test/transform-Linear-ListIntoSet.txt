@@ -1,0 +1,24 @@
+;transform list into a set
+; transformSet(l1...ln) = nil if the list is empty
+                        ; l1 U transformSet(removeAppear (l2...ln), l1) otherwise
+(defun transformSet(arr)
+    (cond
+        ((null arr)nil)
+        (T(cons (car arr) (transformSet(removeAppear (cdr arr) (car arr)))))
+    )
+    
+)
+
+; removeAppear(l1...ln,el)= nil if the list is empty
+                           ; removeAppear(l2...ln,el) if l1=el
+                           ; l1 U removeAppear(l2...ln,el) otherwise
+
+(defun removeAppear (arr el)
+    (cond
+         ((null arr) nil)
+         ((= (car arr) el) (removeAppear (cdr arr) el))
+         (T(cons (car arr) (removeAppear (cdr arr)el)))
+    )
+)
+
+(print (transformSet '(1 1 2 5 2 5 9 8 9)))

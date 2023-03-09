@@ -1,0 +1,20 @@
+;3. Define a function to tests the membership of a node in a n-tree represented as (root list_of_nodes_subtree1 ... list_of_nodes_subtreen)
+;Eg. tree is (a (b (c)) (d) (E (f))) and the node is "b" => true
+
+(defun findNode(arr nod)
+    (cond
+        ((null arr) Nil)
+        ((equal (car arr) nod) T)
+        ((listp (car arr)) (or  (findNode (car arr) nod) (findNode (cdr arr) nod) ))
+        (T(findNode (cdr arr) nod))
+    )
+)
+
+(print(findNode '("a" ("b" ("c")) ("d") ("E" ("f"))) "b"))
+
+
+some # returns true first occ of the nonil
+	return nil if the end is reached 
+	returns true if and only if some invocation of predicate returns true
+
+mapcar #'(lambda (a) (findNode a nod)) arr) = we apply on each el of arr the function findNode

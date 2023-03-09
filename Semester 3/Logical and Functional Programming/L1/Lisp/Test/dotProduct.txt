@@ -1,0 +1,9 @@
+;dotproduct vector
+(defun dotproduct (vect1 vect2)
+    (cond
+         ((null vect1)0)
+         (T(+ (* (car vect1)(car vect2)) (dotproduct (cdr vect1) (cdr vect2))))
+    )
+)
+
+(print(dotproduct '(1 2 3) '(1 2 3)))
