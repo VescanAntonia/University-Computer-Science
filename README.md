@@ -25,8 +25,8 @@ All the university projects that I have done.
   
 ### :orange_book: Semester 4
   - [Web Programming](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Web%20Programming)
-  - [Systems for Design and Implementation]()
-  - [Database Management Systems]()
+  - [Systems for Design and Implementation](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Systems%20for%20Design%20and%20Implementation)
+  - [Database Management Systems](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Database%20Management%20Systems)
   - [Artificial Intelligence](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Artificial%20Intelligence)
-  - [Software Engineering]()
+  - [Software Engineering](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Software%20Engineering)
   
