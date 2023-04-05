@@ -1,0 +1,3 @@
+6. Write a web page which contains a table. This table should be formatted using a style sheet. When the mouse is over the table, the table should collapse to the table header. This collape operation should be done with transitions/animations.
+
+19. Using divs and shadows write a web page which shows stairs in 3D.
