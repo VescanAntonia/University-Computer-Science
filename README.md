@@ -27,6 +27,6 @@ All the university projects that I have done.
   - [Web Programming](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Web%20Programming)
   - [Systems for Design and Implementation]()
   - [Database Management Systems]()
-  - [Artificial Intelligence]()
+  - [Artificial Intelligence](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Artificial%20Intelligence)
   - [Software Engineering]()
   
