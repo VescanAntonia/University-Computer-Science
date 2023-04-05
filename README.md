@@ -18,7 +18,7 @@ All the university projects that I have done.
 
 ### 	:blue_book: Semester 3
   - [Advanced Programming Methods](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%203/Advanced%20Programming%20Methods)
-  - [Computer Networks](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%203/Computer%20Networks/1)
+  - [Computer Networks](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%203/Computer%20Networks)
   - [Databases](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%203/Databases)
   - [Logical and Functional Programming](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%203/Logical%20and%20Functional%20Programming)
   - [Probabilities and Statistics](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%203/Probabilities%20and%20Statistics)
