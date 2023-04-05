@@ -1,7 +1,7 @@
 # University-Computer-Science
 All the university projects that I have done.
 
-### Semester 1
+### :closed_book: Semester 1
   - [Fundamentals of Programming](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%201/Fundamentals%20of%20Programming)
   - [Algebra](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%201/Algebra/Courses)
   - [Computational Logic](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%201/Computational%20Logic)
