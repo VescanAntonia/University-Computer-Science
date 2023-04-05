@@ -22,3 +22,11 @@ All the university projects that I have done.
   - [Databases](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%203/Databases)
   - [Logical and Functional Programming](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%203/Logical%20and%20Functional%20Programming)
   - [Probabilities and Statistics](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%203/Probabilities%20and%20Statistics)
+  
+### :orange_book: Semester 4
+  - [Web Programming]
+  - [Systems for Design and Implementation]
+  - [Database Management Systems]
+  - [Artificial Intelligence]
+  - [Software Engineering]
+  
