@@ -1,1 +1,0 @@
-#default_app_config = 'C:\Users\anton\A1.snippets.apps.SnippetsConfig'
