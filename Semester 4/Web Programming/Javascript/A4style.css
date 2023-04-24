@@ -1,0 +1,28 @@
+html,body, textarea, div, button, table, section{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+div.page-center{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+}
+
+div.calculate{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.calculate-button{
+    font-size: 200%;
+}
+
+.text-area-section{
+    width: 100%;
+}
+
+.input-numbers-area{
+    width: 100%;
+}
