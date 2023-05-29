@@ -1,0 +1,92 @@
+html,body,div,main,form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    vertical-align: baseline;
+    background-color:rgb(233, 231, 223);
+}
+
+main, table{
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid rgb(114, 168, 169);;
+}
+
+
+#main_table{
+    border: 0;
+    width: 100%;
+}
+
+#table_header{
+    border: 1px solid black;
+    background-color: rgb(114, 168, 169);
+    width: 100%
+}
+
+
+#table_of_contents{
+    width: 100%;
+}
+
+
+#table_body_div{
+    width: 100%;
+    height: 35em;
+    overflow:auto;
+}
+
+main,table{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th, td{
+    width: 20%;
+    /* border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px; */
+}
+
+#list-main{
+    height: 100vh;
+}
+
+#book-form,#return-to-main-page, #book_handling>#result-crud{
+    margin-left: 5%;
+}
+
+#book-manager-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* table{
+    border-collapse: collapse;
+    width: 70%;
+    align-content: center;
+    align-items: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+} */
+/* tr:nth-child(even) {
+    background-color: #7e6969ef;
+} */
+
+input[type=submit]{
+    padding:15px;
+    margin-top: 20px;
+}
+
+#addButton,#updateButton,#deleteButton{
+    padding:9px;
+    margin-top: 10px;
+}
