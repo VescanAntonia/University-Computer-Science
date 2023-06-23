@@ -1,0 +1,79 @@
+<?php
+include ('connection.php');
+session_start();
+if (isset($_SESSION['username'])){
+    // $userId = $_SESSION['id'];
+    $username = $_SESSION['username'];
+
+}
+else {
+    header('Location: login.php');
+    die();
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome user</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
+</head>
+<body>
+<h3>Welcome <?php echo $username; ?> ! </h3>
+
+<br>
+<div>
+    <input name="journal" type="text" id="journal-input" placeholder="journal name">
+    <button type="button" onclick="showArticles('<?php echo $username; ?>')">Show articles</button>
+    <br>
+</div>
+<section id="articles"> </section>
+<br>
+
+<div>
+    <!-- <input type="number" id="doc-id-input" placeholder="document ID"><br> -->
+    <input type="text" id="journal-name-input" placeholder="journal name"><br>
+    <input type="text" id="summary-input" placeholder="summary"><br>
+    <!-- <input type="text" id="keyword3-input" placeholder="keyword3"><br>
+    <input type="text" id="keyword4-input" placeholder="keyword4"><br>
+    <input type="text" id="keyword5-input" placeholder="keyword5"><br><br> -->
+    <button type="button" onclick="addArticle('<?php echo $username; ?>')">Add article</button>
+    <br><br>
+    <section id="added-message"> </section>
+</div>
+<!--
+<button type="button" onclick="showArticles(<?php echo $userId?>)">Show articles</button>
+<br>
+<section id="articles"> </section>
+<br><br>-->
+
+<!-- <div>
+    <input name="journal" type="text" id="journal-input" placeholder="journal name">
+    <button type="button" onclick="showArticles('<?php echo $username; ?>')">Show articles</button>
+    <br>
+</div>
+<section id="articles"></section> -->
+
+<!--
+<div>
+    <input name="channelname" type="text" id="channel-input" placeholder="channel name">
+    <button type="button" onclick="subscribe(<?php echo $userId?>)">Subscribe</button>
+    <br><br>
+    <section id="subscribe-message"> </section>
+</div> -->
+
+<br>
+<form action="logout.php">
+    <input type="submit" name="logout" value="Logout">
+</form>
+<br>
+
+</body>
+</html>

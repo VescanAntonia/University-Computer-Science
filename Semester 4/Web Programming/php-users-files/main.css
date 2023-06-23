@@ -1,0 +1,10 @@
+.red{
+    background: red;
+}
+
+#data{
+    background-color: cadetblue;
+    border-color:coral;
+    border-width: 2px;
+    padding: auto;
+}
