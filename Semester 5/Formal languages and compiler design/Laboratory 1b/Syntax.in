@@ -5,7 +5,7 @@ statement_list = statement | statement ";" statement_list
 
 
 expression = expression "+" term | expression "-" term | term
-term = term * factor | term / factor | factor
+term = term "*" factor | term "/" factor | factor
 factor = "(" expression ")" | identifier | const
 
 io_statement = "input" "(" identifier ")" | "print" "(" identifier ")" ";"| "print" "(" const ")" ";"
