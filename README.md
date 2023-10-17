@@ -29,4 +29,6 @@ All the university projects that I have done.
   - [Database Management Systems](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Database%20Management%20Systems)
   - [Artificial Intelligence](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Artificial%20Intelligence)
   - [Software Engineering](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%204/Software%20Engineering)
-  
+
+### :closed_book: Semester 5
+  - [Formal languages and compiler design]()
