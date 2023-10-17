@@ -23,8 +23,8 @@ if
 int  
 of 
 program 
-read 
+input 
 then 
 var 
 while 
-write
+print
