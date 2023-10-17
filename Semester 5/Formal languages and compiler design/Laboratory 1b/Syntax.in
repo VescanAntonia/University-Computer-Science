@@ -1,0 +1,28 @@
+program = {statement}
+statement = (declaration|assign_statement|if_statement|while_statement|return_statement|for_statement|io_statement)
+
+statement_list = statement | statement ";" statement_list
+
+
+expression = expression + term | expression - term | term
+term = term * factor | term / factor | factor
+factor = "(" expression ")" | identifier | const
+
+io_statement = "input" "(" identifier ")" | "print" "(" identifier ")" ";"| "print" "(" const ")" ";"
+
+simple_type = "int" | "string" | "char" | "boolean"
+
+array_declaration = "array" " "simple_type" " identifier "[" "]"
+declaration=simple_type " " identifier | array_declaration ";"
+
+assign_statement = identifier "=" expression ";"
+while_statement = "while" "(" condition ")" "{" {statement_list} "}"
+
+if_statement = "if" "(" condition ")" "{" {statement_list} "}" ["else" "{" {statement_list} "}"]
+
+return_statement = "return" expression ";"
+
+for_statement = "for" for-header "{" {statement_list} "}" ";"
+for_header = "(" "int" assign_statement ";" condition ";" assign_statement ")"
+condition = expression relation expression
+relation = "<" | "<=" | "==" | "!=" | ">" | ">="  
