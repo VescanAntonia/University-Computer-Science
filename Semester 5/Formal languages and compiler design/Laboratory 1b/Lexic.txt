@@ -16,7 +16,7 @@ Lexic:
 
       -a sequence of letters and  digits, such that the first character is a letter; the rule is:
 
-      identifier = letter | letter{letter}{digit}
+      identifier = letter | letter{letter|digit}
 
       letter = "A" | "B" | ... | "Z"
 
