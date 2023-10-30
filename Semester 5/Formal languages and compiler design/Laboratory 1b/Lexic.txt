@@ -6,11 +6,11 @@ Alphabet:
 Lexic:
       a.Special symbols, representing:
 
-	- operators + - * / := < <= == >=
+	- operators + - * / < <= == >= > = %
 
 	- separators [ ] { }  : ; ( ) space
 
-	- reserved words: array  char  const do else  if int  of program input then var while print
+	- reserved words: array char do else if int program input then var while print
 
       b.identifiers
 
