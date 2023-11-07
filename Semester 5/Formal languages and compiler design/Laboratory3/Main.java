@@ -3,7 +3,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner();
-        String programFileName = "p3.txt"; // Provide the name of the program file you want to scan
+        String programFileName = "p1.txt"; // Provide the name of the program file you want to scan
 
         // Scan the program and generate PIF and symbol tables
         scanner.scan(programFileName);
