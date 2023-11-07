@@ -1,0 +1,9 @@
+int x;
+x=input();
+int y;
+y=input();
+int suma;
+suma=0;
+suma=x+y;
+print(suma);
+
