@@ -1,53 +1,34 @@
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        FiniteAutomata finiteAutomata = new FiniteAutomata("fa.in");
+        Scanner scanner = new Scanner();
+        String programFileName = "p1.txt"; // Provide the name of the program file you want to scan
 
-        Scanner scanner = new Scanner(System.in);
-        finiteAutomata.initializeFromFile();
-        int userOption;
+        // Scan the program and generate PIF and symbol tables
+        scanner.scan(programFileName);
+//        SymbolTable<String> hashTable1= new SymbolTable<>();
+//        SymbolTable<Integer> hashTable2=new SymbolTable<>();
+//        hashTable1.add("abc");
+//        System.out.println("The identifiers table after adding 'abc' "+hashTable1);
+//        System.out.println("Trying to add 'abc' again we get false because its already added: "+hashTable1.add("abc"));
+//        hashTable1.add("b");
+//        System.out.println("The identifiers table after adding 'b': "+hashTable1.toString());
+//        hashTable1.add("c");
+//        System.out.println("The identifiers table after adding 'c': "+hashTable1.toString());
+//
+//        hashTable1.add("bc");
+//        System.out.println("The identifiers table after adding 'bc': "+hashTable1.toString());
+//
+//        System.out.println("The position of 'b': "+hashTable1.lookUp("b"));
+//
+//
+//        hashTable2.add(1);
+//        System.out.println("The constants table after adding 1: "+hashTable2);
+//
+//        hashTable2.add(18);
+//        System.out.println("The constants table after adding 18: "+hashTable2);
 
-        do {
-            System.out.println("\nMenu:");
-            System.out.println("1. Display set of States");
-            System.out.println("2. Display Alphabet");
-            System.out.println("3. Display Transitions");
-            System.out.println("4. Display Initial State");
-            System.out.println("5. Display set of Final States");
-            System.out.println("6. Check DFA");
-            System.out.println("7. Check if a sequence is accepted");
-            System.out.println("0. Exit");
-            System.out.print("Enter your option: ");
 
-            userOption = scanner.nextInt();
-
-            switch (userOption) {
-                case 1 -> System.out.println("Set of States: " + finiteAutomata.getStates());
-                case 2 -> System.out.println("Alphabet: " + finiteAutomata.getAlphabet());
-                case 3 -> {
-                    System.out.println("Transitions:");
-                    for (Transition transition : finiteAutomata.getTransitions()) {
-                        System.out.println("   " + transition);
-                    }
-                }
-                case 4 -> System.out.println("Initial State: " + finiteAutomata.getInitialState());
-                case 5 -> System.out.println("Set of Final States: " + finiteAutomata.getFinalStates());
-                case 6 -> System.out.println("DFA acceptance result: "+finiteAutomata.checkIfDFA());
-                case 7 -> displaySequenceValidation(finiteAutomata);
-                case 0 -> System.out.println("Exiting...");
-                default -> System.out.println("Invalid option. Please enter a valid option.");
-            }
-        } while (userOption != 0);
     }
-    private static void displaySequenceValidation(FiniteAutomata finiteAutomata) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a sequence to check: ");
-        String sequence = scanner.nextLine();
-        boolean isAccepted = finiteAutomata.isAcceptedByFA(sequence);
-        System.out.println("Sequence acceptance result: " + isAccepted);
-    }
-
-
 }
