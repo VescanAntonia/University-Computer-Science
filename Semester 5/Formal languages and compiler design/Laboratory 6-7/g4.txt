@@ -1,0 +1,13 @@
+NonTerminals: S, A, B, C, D
+Terminals: a, *, +, (, )
+Productions:
+S -> B A
+A -> + B A
+A -> ε
+B -> D C
+C -> * D C
+C -> ε
+D -> ( S )
+D -> a
+
+Starting symbol: S

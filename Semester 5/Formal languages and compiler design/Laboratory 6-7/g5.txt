@@ -1,0 +1,9 @@
+NonTerminals: S, E
+Terminals: if, then, else, id, =, num
+Productions:
+S -> if E then S else S
+S -> id = E
+E -> id
+E -> num
+
+Starting symbol: S

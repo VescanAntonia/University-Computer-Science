@@ -1,0 +1,8 @@
+NonTerminals: S, A, B
+Terminals: 0, 1, ε
+Productions:
+S -> A B
+A -> 0 | ε
+B -> 1 | ε
+
+Starting symbol: S
