@@ -1,0 +1,131 @@
+NonTerminals: program, statement, declaration, assign_statement, if_statement, while_statement, return_statement, for_statement, io_statement, statement_list, expression, const, mathematical_operator, sign, number, nonzerodigit, rest_number, digit, identifier, letter, rest_letter, simple_type, array_declaration, condition, else_part, for_header, relation
+Terminals: _, !, ;, +, -, *, /, (, ), input, print, int, string, char, boolean, array, [, ], =, while, {, }, if, else, return, for, <, <=, ==, !=, >, >=, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+Productions:
+program -> statement ; program
+program -> ε
+statement -> declaration
+statement -> assign_statement
+statement -> if_statement
+statement -> while_statement
+statement -> return_statement
+statement -> for_statement
+statement -> io_statement
+statement_list -> statement ; statement_list
+statement_list -> ε
+expression -> const
+expression -> expression mathematical_operator expression
+expression -> ( expression mathematical_operator expression )
+mathematical_operator -> +
+mathematical_operator -> -
+mathematical_operator -> *
+mathematical_operator -> /
+const -> sign number
+const -> 0
+sign -> +
+sign -> -
+sign -> ε
+number -> nonzerodigit rest_number
+rest_number -> digit rest_number
+rest_number -> ε
+io_statement -> input ( identifier )
+io_statement -> print ( identifier ) ;
+io_statement -> print ( const ) ;
+identifier -> letter rest_letter
+rest_letter -> letter rest_letter
+rest_letter -> digit rest_letter
+rest_letter -> ε
+simple_type -> int
+simple_type -> string
+simple_type -> char
+simple_type -> boolean
+array_declaration -> array simple_type identifier [ ]
+declaration -> simple_type identifier
+declaration -> array_declaration ;
+assign_statement -> identifier = expression ;
+while_statement -> while ( condition ) { statement_list }
+if_statement -> if ( condition ) { statement_list } else_part
+else_part -> else { statement_list }
+else_part -> ε
+return_statement -> return expression ;
+for_statement -> for for_header { statement_list } ;
+for_header -> ( int assign_statement ; condition ; assign_statement )
+condition -> expression relation expression
+relation -> <
+relation -> <=
+relation -> ==
+relation -> !=
+relation -> >
+relation -> >=
+letter -> A
+letter -> B
+letter -> C
+letter -> D
+letter -> E
+letter -> F
+letter -> G
+letter -> H
+letter -> I
+letter -> J
+letter -> K
+letter -> L
+letter -> M
+letter -> N
+letter -> O
+letter -> P
+letter -> Q
+letter -> R
+letter -> S
+letter -> T
+letter -> U
+letter -> V
+letter -> W
+letter -> X
+letter -> Y
+letter -> Z
+letter -> a
+letter -> b
+letter -> c
+letter -> d
+letter -> e
+letter -> f
+letter -> g
+letter -> h
+letter -> i
+letter -> j
+letter -> k
+letter -> l
+letter -> m
+letter -> n
+letter -> o
+letter -> p
+letter -> q
+letter -> r
+letter -> s
+letter -> t
+letter -> u
+letter -> v
+letter -> w
+letter -> x
+letter -> y
+letter -> z
+digit -> 0
+digit -> 1
+digit -> 2
+digit -> 3
+digit -> 4
+digit -> 5
+digit -> 6
+digit -> 7
+digit -> 8
+digit -> 9
+nonzerodigit -> 1
+nonzerodigit -> 2
+nonzerodigit -> 3
+nonzerodigit -> 4
+nonzerodigit -> 5
+nonzerodigit -> 6
+nonzerodigit -> 7
+nonzerodigit -> 8
+nonzerodigit -> 9
+
+Starting symbol: program
