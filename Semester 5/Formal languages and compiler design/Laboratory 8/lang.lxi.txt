@@ -1,0 +1,68 @@
+%{
+#include <stdio.h>
+int line_number = 1;
+%}
+%option noyywrap
+letter          [A-Za-z]
+digit           [0-9]
+non_zero_digit  [1-9]
+identifier      {letter}({letter}|{digit})*|{digit}+
+int_constant    [+-]?{non_zero_digit}{digit}*|0
+string_constant \"[a-zA-Z0-9_ .!]*\"
+
+
+%%
+\n              { line_number++; }
+
+"+"             { printf("Operator: +\n"); }
+"-"             { printf("Operator: -\n"); }
+"*"             { printf("Operator: *\n"); }
+"/"             { printf("Operator: /\n"); }
+":="            { printf("Operator: :=\n"); }
+"<="            { printf("Operator: <=\n"); }
+"<"             { printf("Operator: <\n"); }
+"=="            { printf("Operator: ==\n"); }
+"%"             { printf("Operator: %\n"); }
+"="             { printf("Operator: =\n"); }
+">="            { printf("Operator: >=\n"); }
+">"             { printf("Operator: >\n"); }
+"["             { printf("Separator: [\n"); }
+"]"             { printf("Separator: ]\n"); }
+"{"             { printf("Separator: {\n"); }
+"}"             { printf("Separator: }\n"); }
+":"             { printf("Separator: :\n"); }
+";"             { printf("Separator: ;\n"); }
+"("             { printf("Separator: (\n"); }
+")"             { printf("Separator: )\n"); }
+
+
+"input"         { printf("Reserved Word: input\n"); }
+"print"         { printf("Reserved Word: print\n"); }
+"array"         { printf("Reserved Word: array\n"); }
+"char"          { printf("Reserved Word: char\n"); }
+"string"        { printf("Reserved Word: string\n"); }
+"do"            { printf("Reserved Word: do\n"); }
+"else"          { printf("Reserved Word: else\n"); }
+"if"            { printf("Reserved Word: if\n"); }
+"int"           { printf("Reserved Word: int\n"); }
+"program"       { printf("Reserved Word: program\n"); }
+"then"          { printf("Reserved Word: then\n"); }
+"while"         { printf("Reserved Word: while\n"); }
+"for"           { printf("Reserved Word: for\n"); }
+"return"        { printf("Reserved Word: return\n"); }
+
+{identifier}    { printf("Identifier: %s\n", yytext); }
+{int_constant}  { printf("Integer Constant: %s\n", yytext); }
+{string_constant} { printf("String Constant: %s\n", yytext); }
+
+
+[ \t\n]+        ; 
+
+.               { printf("Error: Unrecognized character '%s' at line %d\n", yytext, line_number); }
+
+%%
+
+int main() {
+    yylex();
+    return 0;
+}

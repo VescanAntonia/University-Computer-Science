@@ -1,0 +1,11 @@
+//Print the sum of two numbers
+
+int x;
+x==input("x=");
+int 1x;
+int y;
+y=input("y=");@
+int suma;
+suma=0;
+suma=x+y;
+print(suma);

@@ -1,0 +1,23 @@
+//Compute the max and the min from an array with n numbers
+
+int maxi;
+maxi=-9999;
+int mini;
+mini=99999;
+int n;
+n=input("Enter the length: ");
+
+array int numbers[];
+for(int i=0;i<n;i++){
+	numbers[i]=input("enter number: ");
+}
+
+for(int i=0;i<n;i++){
+	if(numbers[i]>maxi){
+		maxi=numbers[i];
+	}
+	if(numbers[i]<mini){
+		mini=numbers[i];
+	}
+}
+print("The maximum: "+str(maxi)+" The minimum: "+str(mini));
