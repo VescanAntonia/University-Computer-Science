@@ -33,3 +33,5 @@ All the university projects that I have done.
 ### :closed_book: Semester 5
   - [Formal languages and compiler design](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%205/Formal%20languages%20and%20compiler%20design)
   - [Mobile Application Programming ](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%205/Mobile%20Application%20Programming)
+  - [Parallel and distributed programming](https://github.com/VescanAntonia/University-Computer-Science/tree/main/Semester%205/Parallel%20and%20distributed%20programming)
+  - []()
