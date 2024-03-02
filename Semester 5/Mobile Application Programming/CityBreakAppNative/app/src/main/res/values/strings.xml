@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">CityBreakAppNative</string>
+    <string name="id">ID</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="startDate">Start Date</string>
+
+    <string name="accommodation">Accommodation</string>
+    <string name="logoDesc">Logo Description</string>
+    <string name="addButton">addButton</string>
+    <string name="createCityBreak">Add a city break</string>
+    <string name="cityBreakTexts">City Breaks</string>
+    <string name="createID">ID…</string>
+    <string name="inputCity">City…</string>
+    <string name="inputCountry">Country…</string>
+    <string name="inputStartDate">Start date…</string>
+    <string name="inputEndDate">End date…</string>
+    <string name="inputDescription">Description…</string>
+    <string name="inputAccommodation">Accommodation…</string>
+    <string name="inputBudget">Budget…</string>
+    <string name="cancelOption">Cancel</string>
+    <string name="saveOption">Save</string>
+
+
+    <string name="editCityBreak">Update a city break</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+
+    <string name="deleteMessage">Are you sure you want to delete the selected city break? </string>
+
+    <string name="openCityScape">Explore the world</string>
+    <string name="editButton">Edit button</string>
+    <string name="deleteButton">Delete button</string>
+</resources>
